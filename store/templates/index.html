@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% for product in products %}
+{% extends 'base.html' %} {% block content %} {% for product in products %}
 <div class="card" style="width: 18rem">
   <img src="{{product.image.url}}" class="card-img-top" alt="card image" />
   <div class="card-body">
@@ -8,4 +8,4 @@
   </div>
 </div>
 
-{% endfor %}
+{% endfor %} {% endblock %}
