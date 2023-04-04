@@ -19,18 +19,6 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    {% for product in products %}
-    <div class="card" style="width: 18rem">
-      <img src="{{product.image.url}}" class="card-img-top" alt="card image" />
-      <div class="card-body">
-        <p class="card-title">{{product.name}}</p>
-        <p class="card-text"><b>{{product.price}}</b></p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
-    </div>
-
-    {% endfor %}
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
