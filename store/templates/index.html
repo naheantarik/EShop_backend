@@ -1,11 +1,19 @@
-{% extends 'base.html' %} {% block content %} {% for product in products %}
-<div class="card" style="width: 18rem">
-  <img src="{{product.image.url}}" class="card-img-top" alt="card image" />
-  <div class="card-body">
-    <p class="card-title">{{product.name}}</p>
-    <p class="card-text"><b>{{product.price}}</b></p>
-    <a href="#" class="btn btn-primary">Add to cart</a>
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid mt-3">
+  <div class="row max-auto">
+    {% for product in products %}
+    <div class="card max-auto mb-3" style="width: 18rem">
+      <img src="{{product.image.url}}" class="card-img-top" alt="card image" />
+      <div class="card-body">
+        <p class="card-title">{{product.name}}</p>
+        <p class="card-text"><b>{{product.price}}</b></p>
+        <a href="#" class="btn btn-primary">Add to cart</a>
+      </div>
+    </div>
+
+    {% endfor %}
   </div>
 </div>
 
-{% endfor %} {% endblock %}
+{% endblock %}
