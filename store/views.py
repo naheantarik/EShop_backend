@@ -8,4 +8,8 @@ def index(request):
     prduct = Product.get_all_product()
     category = Category.get_all_category()
 
-    return render(request, 'index.html', {'products': prduct}, {'categorys': category})
+    data = {}
+    data['products'] = prduct
+    data['categorys'] = category
+
+    return render(request, 'index.html', data)

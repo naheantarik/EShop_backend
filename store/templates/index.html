@@ -6,9 +6,11 @@
 
     <div class="col-lg-3">
       <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active">
-          The current link item
+        {% for category in categorys %}
+        <a href="#" class="list-group-item list-group-item-action">
+          {{category.name}}
         </a>
+        {% endfor %}
       </div>
     </div>
 
@@ -16,7 +18,7 @@
     <div id="product" class="col-lg-9 max-auto">
       <div class="row max-auto">
         {% for product in products %}
-        <div class="card max-auto mb-3" style="width: 18rem">
+        <div class="card max-auto mb-3" style="width: 15rem">
           <img
             src="{{product.image.url}}"
             class="card-img-top"
