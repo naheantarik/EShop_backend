@@ -8,9 +8,9 @@ def index(request):
     products = None
     category = Category.get_all_category()
 
-    categoryId = request.GET.get('categories')
-    if categoryId:
-        products = Product.get_all_product_by_categoryId(categoryId)
+    categoryID = request.GET.get('categories')
+    if categoryID:
+        products = Product.get_all_product_by_categoryId(categoryID)
     else:
         products = Product.get_all_product()
 
