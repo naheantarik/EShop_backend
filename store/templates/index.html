@@ -1,18 +1,36 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container-fluid mt-3">
-  <div class="row max-auto">
-    {% for product in products %}
-    <div class="card max-auto mb-3" style="width: 18rem">
-      <img src="{{product.image.url}}" class="card-img-top" alt="card image" />
-      <div class="card-body">
-        <p class="card-title">{{product.name}}</p>
-        <p class="card-text"><b>{{product.price}}</b></p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
+<div class="container-fluid mt-3 max-auto">
+  <div class="row">
+    <!-- filter -->
+
+    <div class="col-lg-3">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active">
+          The current link item
+        </a>
       </div>
     </div>
 
-    {% endfor %}
+    <!-- products -->
+    <div id="product" class="col-lg-9 max-auto">
+      <div class="row max-auto">
+        {% for product in products %}
+        <div class="card max-auto mb-3" style="width: 18rem">
+          <img
+            src="{{product.image.url}}"
+            class="card-img-top"
+            alt="card image"
+          />
+          <div class="card-body">
+            <p class="card-title">{{product.name}}</p>
+            <p class="card-text"><b>{{product.price}}$</b></p>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
 
