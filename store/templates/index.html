@@ -7,7 +7,10 @@
     <div class="col-lg-3">
       <div class="list-group">
         {% for category in categorys %}
-        <a href="#" class="list-group-item list-group-item-action">
+        <a
+          href="/?category={{category.id}}"
+          class="list-group-item list-group-item-action"
+        >
           {{category.name}}
         </a>
         {% endfor %}
