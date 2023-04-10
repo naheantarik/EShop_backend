@@ -4,7 +4,7 @@ from .models.product import Product, Category
 # Create your views here.
 
 
-def index(request):
+def home(request):
     products = None
     category = Category.get_all_category()
 
