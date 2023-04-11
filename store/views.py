@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from .models.product import Product, Category
+from django.http import HttpResponse
+from .models.product import Product  # this model is model folter
+from .models.category import Category  # this model is model folter
+from .models.customer import Customer  # this model is model folter
 
 # Create your views here.
 
@@ -22,4 +25,23 @@ def home(request):
 
 
 def Signup(request):
-    return render(request, 'signup.html')
+
+    if request.method == 'GET':
+        return render(request, 'signup.html')
+    else:
+        PostData = request.POST
+        first_name = PostData.get('firstname')
+        last_name = PostData.get('lastname')
+        phone = PostData.get('phone')
+        email = PostData.get('email')
+        password = PostData.get('password')
+        print(first_name, last_name, phone, email, password)
+
+        customers = Customer(first_name=first_name,
+                             last_name=last_name,
+                             phone=phone,
+                             email=email,
+                             password=password)
+        customers.register()
+
+        return HttpResponse("Signup success")
