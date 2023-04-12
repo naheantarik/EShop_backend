@@ -35,13 +35,33 @@ def Signup(request):
         phone = PostData.get('phone')
         email = PostData.get('email')
         password = PostData.get('password')
-        print(first_name, last_name, phone, email, password)
 
-        customers = Customer(first_name=first_name,
-                             last_name=last_name,
-                             phone=phone,
-                             email=email,
-                             password=password)
-        customers.register()
+        error_message = None
 
-        return HttpResponse("Signup success")
+        # Validation
+
+        if (not email):
+            error_message = 'Please Enter Email !!'
+        elif (not phone):
+            error_message = 'Please Enter Phone Number !!'
+        elif len(phone) < 11:
+            error_message = 'Phone number must 11 digit'
+        elif (not password):
+            error_message = 'Please Enter Password !!'
+        elif len(password) < 6:
+            error_message = 'Must be 6 digit Password'
+
+        # save
+
+        if not error_message:
+            print(first_name, last_name, phone, email, password)
+
+            customers = Customer(first_name=first_name,
+                                 last_name=last_name,
+                                 phone=phone,
+                                 email=email,
+                                 password=password)
+            customers.register()
+
+        else:
+            return render(request, 'signup.html', {'error': error_message})
