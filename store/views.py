@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models.product import Product  # this model is model folter
 from .models.category import Category  # this model is model folter
@@ -40,6 +40,9 @@ def Signup(request):
 
         # Validation
 
+        value = {'first_name': first_name, 'last_name': last_name,
+                 'phone': phone, 'email': email}
+
         if (not email):
             error_message = 'Please Enter Email !!'
         elif (not phone):
@@ -62,6 +65,11 @@ def Signup(request):
                                  email=email,
                                  password=password)
             customers.register()
+            return redirect('home')
 
         else:
-            return render(request, 'signup.html', {'error': error_message})
+            data = {
+                'value': value,
+                'error': error_message
+            }
+            return render(request, 'signup.html', data)
