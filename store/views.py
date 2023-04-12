@@ -38,6 +38,12 @@ def Signup(request):
 
         error_message = None
 
+        customers = Customer(first_name=first_name,
+                             last_name=last_name,
+                             phone=phone,
+                             email=email,
+                             password=password)
+
         # Validation
 
         value = {'first_name': first_name, 'last_name': last_name,
@@ -53,18 +59,14 @@ def Signup(request):
             error_message = 'Please Enter Password !!'
         elif len(password) < 6:
             error_message = 'Must be 6 digit Password'
+        elif customers.isExists():
+            error_message = 'Email already registered'
 
         # save
 
         if not error_message:
             print(first_name, last_name, phone, email, password)
-
-            customers = Customer(first_name=first_name,
-                                 last_name=last_name,
-                                 phone=phone,
-                                 email=email,
-                                 password=password)
-            customers.register()
+            customers.register()                                    # save all values
             return redirect('home')
 
         else:
