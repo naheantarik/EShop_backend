@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models.product import Product  # this model is model folter
 from .models.category import Category  # this model is model folter
 from .models.customer import Customer  # this model is model folter
+from .validuser import registerUser
 
 # Create your views here.
 
@@ -29,49 +30,4 @@ def Signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html')
     else:
-        PostData = request.POST
-        first_name = PostData.get('firstname')
-        last_name = PostData.get('lastname')
-        phone = PostData.get('phone')
-        email = PostData.get('email')
-        password = PostData.get('password')
-
-        error_message = None
-
-        customers = Customer(first_name=first_name,
-                             last_name=last_name,
-                             phone=phone,
-                             email=email,
-                             password=password)
-
-        # Validation
-
-        value = {'first_name': first_name, 'last_name': last_name,
-                 'phone': phone, 'email': email}
-
-        if (not email):
-            error_message = 'Please Enter Email !!'
-        elif (not phone):
-            error_message = 'Please Enter Phone Number !!'
-        elif len(phone) < 11:
-            error_message = 'Phone number must 11 digit'
-        elif (not password):
-            error_message = 'Please Enter Password !!'
-        elif len(password) < 6:
-            error_message = 'Must be 6 digit Password'
-        elif customers.isExists():
-            error_message = 'Email already registered'
-
-        # save
-
-        if not error_message:
-            print(first_name, last_name, phone, email, password)
-            customers.register()                                    # save all values
-            return redirect('home')
-
-        else:
-            data = {
-                'value': value,
-                'error': error_message
-            }
-            return render(request, 'signup.html', data)
+        return registerUser(request)
