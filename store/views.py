@@ -31,3 +31,7 @@ def Signup(request):
         return render(request, 'signup.html')
     else:
         return registerUser(request)
+
+
+def login(request):
+    return HttpResponse('Hello!! login')
