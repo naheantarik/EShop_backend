@@ -43,6 +43,7 @@ def registerUser(request):
                          phone=phone,
                          email=email,
                          password=password)
+
     error_message = validateCustomer(customers)
 
     # save
