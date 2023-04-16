@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth import hashers
 from .models.product import Product  # this model is model folter
 from .models.category import Category  # this model is model folter
 from .models.customer import Customer  # this model is model folter
