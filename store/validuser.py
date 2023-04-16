@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import make_password, check_password
 from .models.customer import Customer
 
 # SignUp validations Page
@@ -49,6 +50,7 @@ def registerUser(request):
     # save
 
     if not error_message:
+        customers.password = make_password(customers.password)
         customers.register()                                    # save all values
         return redirect('home')
 
