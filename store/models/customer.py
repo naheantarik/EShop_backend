@@ -15,6 +15,3 @@ class Customer(models.Model):
         if Customer.objects.filter(email=self.email):
             return True
         return False
-
-    @staticmethod
-    def get_email_password():
