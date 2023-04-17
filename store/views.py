@@ -36,3 +36,4 @@ def Signup(request):
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
+    else:
