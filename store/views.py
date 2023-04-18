@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.hashers import make_password, check_password
 from .models.product import Product  # this model is model folter
 from .models.category import Category  # this model is model folter
 from .models.customer import Customer  # this model is model folter
-from .validuser import registerUser
+from .validuser import customers, registerUser
 
 # Create your views here.
 
@@ -39,4 +40,15 @@ def login(request):
     else:
         email = request.POST.get('email')
         password = request.POST.get('password')
-        print(email, password)
+        customer = Customer.getCustomer_by_email(email)
+        error_message = None
+        if customer:
+            flag = check_password(password, customers.password)
+            if flag:
+                return redirect('home')
+            else:
+                error_message = 'Your email or password incorrect'
+        else:
+            error_message = 'Your email or password incorrect'
+
+        return render(request, 'login.html')
