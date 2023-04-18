@@ -36,3 +36,7 @@ def Signup(request):
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
+    else:
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        print(email, password)
